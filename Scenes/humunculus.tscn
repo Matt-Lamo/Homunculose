@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://dkxk5pare3xqx"]
+
+[ext_resource type="Texture2D" uid="uid://ctvjjf7e6d2nr" path="res://Assets/Sprites/Homunculus Spritesheet.png" id="1_y42ka"]
+[ext_resource type="Script" uid="uid://dpn8nq4sl1bq" path="res://Scenes/humunculus.gd" id="1_ymkup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymkup"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvk4d"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lguf1"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8edqv"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y42ka"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dedpo"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi6qm"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e2d7"]
+atlas = ExtResource("1_y42ka")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dedpo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymkup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvk4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lguf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8edqv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y42ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dedpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi6qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e2d7")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y42ka"]
+size = Vector2(18, 30)
+
+[node name="Humunculus" type="CharacterBody2D"]
+script = ExtResource("1_ymkup")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dedpo")
+animation = &"Walking"
+frame = 2
+frame_progress = 0.728512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_y42ka")
