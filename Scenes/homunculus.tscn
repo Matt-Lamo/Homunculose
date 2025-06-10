@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dkxk5pare3xqx"]
 
+[ext_resource type="Script" uid="uid://dpn8nq4sl1bq" path="res://Scripts/homunculus.gd" id="1_ocvrq"]
 [ext_resource type="Texture2D" uid="uid://ctvjjf7e6d2nr" path="res://Assets/Sprites/Homunculus Spritesheet.png" id="1_y42ka"]
-[ext_resource type="Script" uid="uid://dpn8nq4sl1bq" path="res://Scenes/humunculus.gd" id="1_ymkup"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymkup"]
 atlas = ExtResource("1_y42ka")
@@ -51,7 +51,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8edqv")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -68,22 +68,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_3e2d7")
 }],
 "loop": true,
-"name": &"Walking",
+"name": &"walking",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y42ka"]
 size = Vector2(18, 30)
 
-[node name="Humunculus" type="CharacterBody2D"]
-script = ExtResource("1_ymkup")
+[node name="Homunculus" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_ocvrq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dedpo")
-animation = &"Walking"
-frame = 2
-frame_progress = 0.728512
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.228801
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

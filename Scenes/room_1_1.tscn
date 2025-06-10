@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://c3rhkl0yffec"]
 
 [ext_resource type="Texture2D" uid="uid://20dmr3dm01ly" path="res://Assets/Tilesheets/Background Tilesheet.png" id="1_gmvrg"]
-[ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/humunculus.tscn" id="2_kf6g3"]
+[ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_kf6g3"]
 [ext_resource type="Texture2D" uid="uid://dt5vt2yjj2i41" path="res://Assets/Tilesheets/Foreground Tilesheet.png" id="2_wi3gc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kf6g3"]
