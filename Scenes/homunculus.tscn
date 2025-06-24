@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkxk5pare3xqx"]
+[gd_scene load_steps=14 format=3 uid="uid://dkxk5pare3xqx"]
 
 [ext_resource type="Script" uid="uid://dpn8nq4sl1bq" path="res://Scripts/homunculus.gd" id="1_ocvrq"]
 [ext_resource type="Texture2D" uid="uid://ctvjjf7e6d2nr" path="res://Assets/Sprites/Homunculus Spritesheet.png" id="1_y42ka"]
+[ext_resource type="Script" uid="uid://cwcvxlmyr7me5" path="res://Scenes/charge_timer.gd" id="3_ygv5h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymkup"]
 atlas = ExtResource("1_y42ka")
@@ -84,8 +85,14 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dedpo")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.228801
+frame_progress = 0.502817
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_y42ka")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("3_ygv5h")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
