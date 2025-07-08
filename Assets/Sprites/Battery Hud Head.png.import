@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b65pj2u6at74r"
-path="res://.godot/imported/TextureProgress 2.png-413c43d5e2788a3a8734357e488ce6e3.ctex"
+uid="uid://cyp3e0q8glp7p"
+path="res://.godot/imported/Battery Hud Head.png-cbd01ab9bca866c66ffd7a5b02842b27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TextureProgress 2.png"
-dest_files=["res://.godot/imported/TextureProgress 2.png-413c43d5e2788a3a8734357e488ce6e3.ctex"]
+source_file="res://Assets/Sprites/Battery Hud Head.png"
+dest_files=["res://.godot/imported/Battery Hud Head.png-cbd01ab9bca866c66ffd7a5b02842b27.ctex"]
 
 [params]
 

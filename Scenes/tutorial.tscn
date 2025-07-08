@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=4 uid="uid://2avxpwmciqkb"]
+[gd_scene load_steps=17 format=4 uid="uid://2avxpwmciqkb"]
 
 [ext_resource type="Texture2D" uid="uid://20dmr3dm01ly" path="res://Assets/Tilesheets/Background Tilesheet.png" id="1_i6t4g"]
 [ext_resource type="Texture2D" uid="uid://dt5vt2yjj2i41" path="res://Assets/Tilesheets/Foreground Tilesheet.png" id="2_p8jf4"]
 [ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="3_p1f1o"]
 [ext_resource type="Texture2D" uid="uid://cgtr7gvpbkm25" path="res://Assets/Tilesheets/Hazards Tilesheet.png" id="4_ys4pu"]
+[ext_resource type="Texture2D" uid="uid://d0m4dm8ufrnfp" path="res://Assets/Sprites/Battery Hud Under.png" id="5_h2ono"]
 [ext_resource type="Script" uid="uid://bgaww1xfs0vrt" path="res://Scripts/charge_bar.gd" id="5_p8jf4"]
-[ext_resource type="Texture2D" uid="uid://bpty2tdwfjy8u" path="res://Assets/Sprites/TextureProgress 3.png" id="6_h2ono"]
-[ext_resource type="Texture2D" uid="uid://cs4qt8rii7vle" path="res://Assets/Sprites/TextureProgress 1.png" id="7_on4kn"]
-[ext_resource type="Texture2D" uid="uid://b65pj2u6at74r" path="res://Assets/Sprites/TextureProgress 2.png" id="8_70gml"]
+[ext_resource type="Texture2D" uid="uid://kyqtypgvt8r7" path="res://Assets/Sprites/Battery Hud Over.png" id="6_on4kn"]
+[ext_resource type="Texture2D" uid="uid://vh6t7e8iplgc" path="res://Assets/Sprites/Battery Hud Progress.png" id="7_70gml"]
+[ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="8_70gml"]
+[ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="9_8va2t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mrt3"]
 texture = ExtResource("1_i6t4g")
@@ -104,20 +106,21 @@ zoom = Vector2(2, 2)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="ChargeBar" type="ProgressBar" parent="HUD"]
-offset_left = 25.0
-offset_top = 20.0
-offset_right = 303.0
-offset_bottom = 68.0
-value = 100.0
-show_percentage = false
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 27.0
+offset_top = 23.0
+offset_right = 155.0
+offset_bottom = 41.0
+scale = Vector2(2, 2)
+texture_under = ExtResource("5_h2ono")
+texture_over = ExtResource("6_on4kn")
+texture_progress = ExtResource("7_70gml")
 script = ExtResource("5_p8jf4")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
-offset_right = 33.0
-offset_bottom = 40.0
-value = 100.0
-texture_under = ExtResource("8_70gml")
-texture_over = ExtResource("7_on4kn")
-texture_progress = ExtResource("6_h2ono")
-texture_progress_offset = Vector2(16, 0)
+[node name="BatteryHudHead" type="Sprite2D" parent="HUD/TextureProgressBar"]
+position = Vector2(137, 9)
+texture = ExtResource("8_70gml")
+
+[node name="BatteryHudTail" type="Sprite2D" parent="HUD/TextureProgressBar"]
+position = Vector2(-2, 9)
+texture = ExtResource("9_8va2t")
