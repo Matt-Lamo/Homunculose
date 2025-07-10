@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://xvfo2u72n643"]
+
+[ext_resource type="Texture2D" uid="uid://w0ewhnpkgd47" path="res://Assets/Sprites/Text Box Background.png" id="1_nwibb"]
+[ext_resource type="FontFile" uid="uid://27oe45mb84xg" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_0kxgl"]
+
+[node name="TextBox" type="MarginContainer"]
+offset_right = 121.0
+offset_bottom = 55.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_nwibb")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0kxgl")
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
