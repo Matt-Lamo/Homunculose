@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://xvfo2u72n643"]
+[gd_scene load_steps=4 format=3 uid="uid://xvfo2u72n643"]
 
 [ext_resource type="Texture2D" uid="uid://w0ewhnpkgd47" path="res://Assets/Sprites/Text Box Background.png" id="1_nwibb"]
 [ext_resource type="FontFile" uid="uid://27oe45mb84xg" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_0kxgl"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0kxgl"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+
 [node name="TextBox" type="MarginContainer"]
-offset_right = 121.0
-offset_bottom = 55.0
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
@@ -21,7 +27,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.945098, 0.0980392, 0.521569, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.0509804, 0.262745, 1)
+theme_override_constants/paragraph_spacing = -4
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_0kxgl")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0kxgl")
+text = "Insert Text Here"
 vertical_alignment = 1
