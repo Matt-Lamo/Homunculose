@@ -34,5 +34,4 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_0kxgl")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0kxgl")
-text = "Insert Text Here"
 vertical_alignment = 1

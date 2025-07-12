@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkxk5pare3xqx"]
+[gd_scene load_steps=15 format=3 uid="uid://dkxk5pare3xqx"]
 
 [ext_resource type="Script" uid="uid://dpn8nq4sl1bq" path="res://Scripts/homunculus.gd" id="1_ocvrq"]
 [ext_resource type="Texture2D" uid="uid://ctvjjf7e6d2nr" path="res://Assets/Sprites/Homunculus Spritesheet.png" id="1_y42ka"]
@@ -76,6 +76,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y42ka"]
 size = Vector2(18, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygv5h"]
+size = Vector2(20, 32)
+
 [node name="Homunculus" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_ocvrq")
@@ -95,4 +98,13 @@ shape = SubResource("RectangleShape2D_y42ka")
 autostart = true
 script = ExtResource("3_ygv5h")
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ygv5h")
+debug_color = Color(0.960781, 0.0997243, 0.435305, 0.42)
+
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://0mjaihmx4gi2"]
+
+[ext_resource type="Texture2D" uid="uid://dc80uo4aix8pe" path="res://Assets/Sprites/Sign 1.png" id="1_nej3f"]
+[ext_resource type="Script" uid="uid://icrf8hi7o5tr" path="res://Scripts/sign_editor.gd" id="1_xa2lm"]
+[ext_resource type="PackedScene" uid="uid://xvfo2u72n643" path="res://Scenes/text_box.tscn" id="2_xa2lm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wyv2"]
+atlas = ExtResource("1_nej3f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tchd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wyv2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4jaa"]
+radius = 50.0
+
+[node name="Sign2" type="Area2D"]
+script = ExtResource("1_xa2lm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8tchd")
+animation = &"Idle"
+
+[node name="TextBox" parent="." instance=ExtResource("2_xa2lm")]
+offset_left = -16.0
+offset_top = -51.0
+offset_right = 17.0
+offset_bottom = -19.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o4jaa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
