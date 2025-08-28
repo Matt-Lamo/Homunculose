@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://csowtgg5m54lg"]
+
+[ext_resource type="Script" uid="uid://cnu6vc1tkjds7" path="res://Scripts/end_door.gd" id="1_mfqou"]
+[ext_resource type="Texture2D" uid="uid://c3a177k3dkqst" path="res://Assets/Sprites/Door.png" id="1_oujam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfqou"]
+atlas = ExtResource("1_oujam")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oujam"]
+atlas = ExtResource("1_oujam")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgg04"]
+atlas = ExtResource("1_oujam")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ofti"]
+atlas = ExtResource("1_oujam")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsh3l"]
+atlas = ExtResource("1_oujam")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7bat"]
+atlas = ExtResource("1_oujam")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgg04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfqou")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oujam")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgg04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ofti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsh3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7bat")
+}],
+"loop": true,
+"name": &"Open Animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oujam"]
+size = Vector2(36, 43)
+
+[node name="End_Door" type="Area2D"]
+script = ExtResource("1_mfqou")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tgg04")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_oujam")

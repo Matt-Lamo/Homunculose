@@ -98,13 +98,13 @@ shape = SubResource("RectangleShape2D_y42ka")
 autostart = true
 script = ExtResource("3_ygv5h")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ygv5h")
 debug_color = Color(0.960781, 0.0997243, 0.435305, 0.42)
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hitbox_body_entered"]

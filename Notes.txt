@@ -1,0 +1,6 @@
+TO DO LIST:
+- Update/ improve movement physics system
+	- Add wall sliding/ jumping, better implement states to player.
+- Work in feedback for taking damage to player
+	- Sound?
+	- VFX such as green goop coming from player
