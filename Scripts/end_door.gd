@@ -3,6 +3,7 @@ extends Area2D
 var opened = false
 @onready var playerInArea = false
 @onready var animatedSprite2d = $AnimatedSprite2D
+signal door_animation
 func _ready() -> void:
 	opened = false
 	
@@ -13,6 +14,7 @@ func check_input() -> void:
 			#SEND SIGNAL TO PLAYER TO FREEZE AND PLAY ANIMATION
 			if animatedSprite2d.animation == "Idle":
 				animatedSprite2d.play("Open Animation")
+				door_animation.emit()
 		
 	
 

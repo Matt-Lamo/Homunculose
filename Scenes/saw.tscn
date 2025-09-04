@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4d1cakprmnq"]
+
+[ext_resource type="Script" uid="uid://du6m7j6eqwthd" path="res://Scripts/saw.gd" id="1_4qbox"]
+[ext_resource type="Texture2D" uid="uid://b8g6k6p8enhqh" path="res://Assets/Sprites/Blade.png" id="1_jp1mk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddabk"]
+atlas = ExtResource("1_jp1mk")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2ud2"]
+atlas = ExtResource("1_jp1mk")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reoe3"]
+atlas = ExtResource("1_jp1mk")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8b65"]
+atlas = ExtResource("1_jp1mk")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tse5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddabk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2ud2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reoe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8b65")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Saw" type="Area2D"]
+script = ExtResource("1_4qbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tse5f")
+autoplay = "default"
+frame_progress = 0.203931
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, 8, 13, 8, 10, -1, 0, -5, -10, -1)
