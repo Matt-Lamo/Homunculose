@@ -278,7 +278,7 @@ script = ExtResource("1_ocvrq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dedpo")
-animation = &"idle"
+animation = &"turning_to_door"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

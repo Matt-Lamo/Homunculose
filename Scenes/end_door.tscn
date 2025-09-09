@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oujam")
 }],
-"loop": true,
+"loop": false,
 "name": &"Open",
 "speed": 5.0
 }, {
