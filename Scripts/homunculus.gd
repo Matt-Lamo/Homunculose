@@ -2,17 +2,25 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const WALL_JUMP_VELOCITY = Vector2(200, -400)
+const wall_jump_push_force = 300.0
 const sawDamage = 15
 const hazardDamage = 15
-const wallGravity = 0
+const wallGravity = 600.0
+const defaultGravity = 1100.0
 var deathBool = true #flips when player dies to break physics_process loop
 enum States {IDLE, WALKING, FALLING, WALL_SLIDING, JUMPING}
 var state: States = States.IDLE
+var previousState: States = States.IDLE
 @onready var animatedSprite2d = $AnimatedSprite2D
+@onready var rayCastLeft = $RayCastLeft
+@onready var rayCastRight = $RayCastRight
+@onready var wallJumpCooldown = $WallJumpCooldown
 
 
 func _ready() -> void:
 	Global.charge = Global.maxCharge
+	wallJumpCooldown.start()
 
 
 func check_charge() -> void:
@@ -25,53 +33,74 @@ func check_charge() -> void:
 		
 
 func set_state(direction: float) -> void:
-	if direction !=0:   
+	previousState = state
+	if is_on_wall_only():
+		state = States.WALL_SLIDING
+		#print("state WALL SLIDING")
+	elif direction !=0:   
 		state = States.WALKING
-		print("state WALKING")
-	elif direction !=0 and Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		state = States.JUMPING
-		print("state JUMPING")
+		#print("state WALKING")
 	else:
 		state = States.IDLE
-		print("state IDLE")
-	if not is_on_floor():
-		state = States.FALLING
-		print("state FALLING  ")
-	#if is_on_wall_only():
-		#state = States.WALL_SLIDING
-		#print("state WALL SLIDING")
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#print("state IDLE")
+	#if not is_on_floor():
+		#state = States.FALLING
+		#print("state FALLING  ")
+
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
 		state = States.JUMPING
-		print("state JUMPING")
+		#print("state JUMPING")
 
 func _physics_process(delta: float) -> void:
+	ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)
+	#print(wallJumpCooldown.time_left)
 	check_charge() #checks player charge for game over
 
 	var direction := Input.get_axis("left", "right")
 	set_state(direction)
 	velocity += get_gravity() * delta
-	if state == States.IDLE:
-		velocity.x = direction * SPEED
-		animatedSprite2d.play("idle")
-	elif state == States.WALKING:
-		animatedSprite2d.flip_h = (direction ==-1)  #flips animation WHEN WALKING STATE
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-		animatedSprite2d.play("walking")
-	elif state == States.WALL_SLIDING:
-		animatedSprite2d.play("wall_sliding")
-	elif state == States.JUMPING:
-		velocity.y = JUMP_VELOCITY #JUMPING STATE
-	elif state == States.FALLING:
-		pass#velocity += get_gravity() * delta  #FALLING STATE
-	elif state == States.WALL_SLIDING:
-		pass
-	
-	
-	move_and_slide()
+	match state:
+		States.IDLE:
+			if wallJumpCooldown.is_stopped():
+				velocity.x = direction * SPEED
+			animatedSprite2d.play("idle")
+		States.WALKING:
+			if(wallJumpCooldown.is_stopped()):
+				if direction:
+					velocity.x = direction * SPEED
+				else:
+					velocity.x = move_toward(velocity.x, 0, SPEED)
+			animatedSprite2d.flip_h = (direction ==-1)  #flips animation WHEN WALKING STATE
+			animatedSprite2d.play("walking")
+		States.WALL_SLIDING:
+			ProjectSettings.set_setting("physics/2d/default_gravity", wallGravity)
+			if direction != 0:
+				velocity.x = direction * SPEED
+			animatedSprite2d.play("wall_sliding")
+		States.JUMPING:
+			if previousState == States.WALL_SLIDING:
+				var wall_jump_velocity = WALL_JUMP_VELOCITY
+				print("Previous State WALL SLIDING")
+				if rayCastLeft.is_colliding():
+					print("RAYCAST LEFT")
+					if(rayCastLeft.get_collider().is_in_group("Walls")): #checks if colliding with wall
+						print("WALL JUMP LEFT")
+						
+						velocity = wall_jump_velocity
+						wallJumpCooldown.start()
+				elif rayCastRight.is_colliding(): #checks if colliding with wall
+					print("RAYCAST RIGHT")
+					if(rayCastRight.get_collider().is_in_group("Walls")): #checks if colliding with wall
+						print("WALL JUMP RIGHT")
+						wall_jump_velocity.x *= -1
+						velocity = wall_jump_velocity
+						wallJumpCooldown.start()
+			else:
+				print("JUMP NORMAL")
+				velocity.y = JUMP_VELOCITY #JUMPING STATE
 
+
+	move_and_slide()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "Hazards":

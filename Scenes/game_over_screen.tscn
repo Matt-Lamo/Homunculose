@@ -1,65 +1,48 @@
-[gd_scene load_steps=18 format=3 uid="uid://e48mb7y0ri2m"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Transition animation.png" id="1_jb6in"]
+[gd_scene load_steps=17 format=3 uid="uid://e48mb7y0ri2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8man"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(0, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kk8k2"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(576, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5yba"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(1152, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ladg1"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(1728, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_un84n"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(2304, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8t0r8"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(2880, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3gi6v"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(3456, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2a8ct"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(4032, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4wbn"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(4608, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydehj"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(5184, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twso6"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(5760, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue022"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(6336, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofecr"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(6912, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8aisn"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(7488, 0, 576, 336)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lskj"]
-atlas = ExtResource("1_jb6in")
 region = Rect2(8064, 0, 576, 336)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_csank"]
