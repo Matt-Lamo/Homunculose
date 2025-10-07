@@ -34,22 +34,15 @@ func check_charge() -> void:
 
 func set_state(direction: float) -> void:
 	previousState = state
-	if is_on_wall_only():
+	if is_on_wall_only() and (rayCastLeft.is_colliding() or rayCastRight.is_colliding()):
 		state = States.WALL_SLIDING
-		#print("state WALL SLIDING")
 	elif direction !=0:   
 		state = States.WALKING
-		#print("state WALKING")
 	else:
 		state = States.IDLE
-		#print("state IDLE")
-	#if not is_on_floor():
-		#state = States.FALLING
-		#print("state FALLING  ")
 
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
 		state = States.JUMPING
-		#print("state JUMPING")
 
 func _physics_process(delta: float) -> void:
 	ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)

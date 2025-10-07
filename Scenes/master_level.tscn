@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3 uid="uid://j0qs0g4bxujs"]
+
+[ext_resource type="Script" uid="uid://dgaeglu1nfx7x" path="res://Scripts/master_level.gd" id="1_cwc2c"]
+[ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_ash0a"]
+[ext_resource type="PackedScene" uid="uid://dpjher1qwwqp2" path="res://Scenes/Level_Cells/BL/demo_bl.tscn" id="2_w7af8"]
+[ext_resource type="PackedScene" uid="uid://bfl2evfaat60c" path="res://Scenes/Level_Cells/TB/demo_tb.tscn" id="3_2cmae"]
+[ext_resource type="Texture2D" uid="uid://d0m4dm8ufrnfp" path="res://Assets/Sprites/Battery Hud Under.png" id="3_10gec"]
+[ext_resource type="Texture2D" uid="uid://kyqtypgvt8r7" path="res://Assets/Sprites/Battery Hud Over.png" id="4_76pe6"]
+[ext_resource type="Texture2D" uid="uid://vh6t7e8iplgc" path="res://Assets/Sprites/Battery Hud Progress.png" id="5_0ivku"]
+[ext_resource type="Script" uid="uid://bgaww1xfs0vrt" path="res://Scripts/charge_bar.gd" id="6_w7af8"]
+[ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="7_2cmae"]
+[ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
+[ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7af8"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cmae"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cks5g"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmdjs"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eviyl"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1fa"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djep1"]
+atlas = ExtResource("9_76pe6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fu21j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ivku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7af8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cmae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cks5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmdjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eviyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv1fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djep1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="MasterLevel" type="Node2D"]
+script = ExtResource("1_cwc2c")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="StartingRoomL" parent="Level" instance=ExtResource("2_w7af8")]
+
+[node name="StartingRoomL2" parent="Level" instance=ExtResource("3_2cmae")]
+position = Vector2(0, 512)
+
+[node name="Homunculus" parent="." instance=ExtResource("2_ash0a")]
+position = Vector2(-16, -48)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Homunculus"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 27.0
+offset_top = 23.0
+offset_right = 155.0
+offset_bottom = 41.0
+scale = Vector2(2, 2)
+value = 100.0
+texture_under = ExtResource("3_10gec")
+texture_over = ExtResource("4_76pe6")
+texture_progress = ExtResource("5_0ivku")
+script = ExtResource("6_w7af8")
+
+[node name="BatteryHudHead" type="Sprite2D" parent="HUD/TextureProgressBar"]
+position = Vector2(137, 9)
+texture = ExtResource("7_2cmae")
+
+[node name="BatteryHudTail" type="Sprite2D" parent="HUD/TextureProgressBar"]
+position = Vector2(-2, 9)
+texture = ExtResource("8_cks5g")
+
+[node name="LoadingScreen" type="Node2D" parent="HUD"]
+
+[node name="ColorRect" type="ColorRect" parent="HUD/LoadingScreen"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.160784, 0.607843, 0.886275, 1)
+
+[node name="LoadingAnim" type="AnimatedSprite2D" parent="HUD/LoadingScreen"]
+position = Vector2(1049, 552)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fu21j")
+autoplay = "default"
+frame_progress = 0.912067
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-16, -48)
+zoom = Vector2(2, 2)
