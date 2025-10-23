@@ -11,15 +11,16 @@ var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	randomize()
-	loadingScreen.visible = false
+	loadingScreen.visible = true
 	generate_grid()
 	generate_solution_path()
+	apply_level_cells()
 
 func _process(delta: float) -> void:
 	if !levelGenerated:
-		loadingScreen.visible = true
-	else:
 		loadingScreen.visible = false
+	else:
+		loadingScreen.visible = true
 
 func generate_solution_path() -> void:
 	var position = [0,0]
@@ -68,7 +69,72 @@ func generate_solution_path() -> void:
 		
 	
 func apply_level_cells() -> void:
-	pass
+	for i in range(levelGrid.size()):
+		for j in range(levelGrid[0].size()):
+			if solutionPath.has([i,j]):
+				pass #check for neighboring rooms on which sides, then grab room from file at random.
+				var index = 0
+				for iter in range(0,solutionPath.size-1):
+					if solutionPath[iter] == [i,j]:
+						index = iter
+						break
+						
+					if index == 0: #if position is on starting room
+						var nextCell = solutionPath[1]
+						if nextCell[1] > solutionPath[index][1]:
+							pass #INSERT ROOM FROM StartingRooms_R (right room)
+						elif nextCell[1] < solutionPath[index][1]:
+							pass #INSERT ROOM FROM StartingRooms_L (left room)
+						elif nextCell[0] > solutionPath[index][0]:
+							pass #INSERT ROOM FROM StartingRooms_B (bottom room)
+							
+					elif index == solutionPath.size: #if position is on final room
+						pass
+						var previousCell = solutionPath[-2]
+						if previousCell[0] > solutionPath[index][0]:
+							pass #INSERT ROOM FROM FinalRoom_R (right room)
+						elif previousCell[0] < solutionPath[index][0]:
+							pass #INSERT ROOM FROM FinalRoom_L (left room)
+						elif previousCell[1] < solutionPath[index][1]:
+							pass #INSERT ROOM FROM FinalRoom_T (top room)
+					else: #if position is any other room
+						var nextCell = solutionPath[index+1]
+						var previousCell = solutionPath[index-1]
+						var doorType = ["",""]
+						#PREVIOUS CELL
+						if previousCell[0] < solutionPath[index][0]:
+							doorType[0] == "L"
+						elif previousCell[0] > solutionPath[index][0]:
+							doorType[0] == "R"
+						elif previousCell[1] < solutionPath[index][1]:
+							doorType[0] == "T"
+						#NEXT CELL
+						if nextCell[0] < solutionPath[index][0]:
+							doorType[0] == "L"
+						elif previousCell[0] > solutionPath[index][0]:
+							nextCell[0] == "R"
+						elif nextCell[1] > solutionPath[index][1]:
+							doorType[0] == "B"
+							
+						if doorType.has("B") and doorType.has("L"):
+							pass #INSERT ROOM from BL (bottom left)
+						elif doorType.has("L") and doorType.has("R"):
+							pass #INSERT ROOM from LR (left right)
+						elif doorType.has("L") and doorType.has("T"):
+							pass #INSERT ROOM from LT (left top)
+						elif doorType.has("R") and doorType.has("B"):
+							pass #INSERT ROOM from RB (right bottom)
+						elif doorType.has("T") and doorType.has("B"):
+							pass #INSERT ROOM from TB (top bottom)
+						elif doorType.has("T") and doorType.has("R"):
+							pass #INSERT ROOM from TR (top right)
+						
+					
+			else:
+				levelGrid[i][j] = load("res://Scenes/Level_Cells/demo_fill.tscn")
+				levelGrid[i][j]=levelGrid[i][j].instantiate()
+				add_child(levelGrid[i][j])
+				levelGrid[i][j].position = Vector2((i*cellSpace),(j*cellSpace))
 	
 func generate_grid() -> void:
 	for i in xSize:
