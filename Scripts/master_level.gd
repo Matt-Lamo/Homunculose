@@ -8,6 +8,7 @@ const cellSpace = 512
 const xSize = 5
 const ySize = 5
 var rng = RandomNumberGenerator.new()
+@onready var levelNode = $Level
 
 func _ready() -> void:
 	randomize()
@@ -69,26 +70,31 @@ func generate_solution_path() -> void:
 		
 	
 func apply_level_cells() -> void:
+	var index = 0
 	for i in range(levelGrid.size()):
 		for j in range(levelGrid[0].size()):
-			if solutionPath.has([i,j]):
-				pass #check for neighboring rooms on which sides, then grab room from file at random.
-				var index = 0
-				for iter in range(0,solutionPath.size-1):
+			
+			if solutionPath.has([i,j]): #if grid location is part of the solution path...
+				for iter in range(0,solutionPath.size()-1): #gets index of element in solutionPath
 					if solutionPath[iter] == [i,j]:
 						index = iter
 						break
 						
 					if index == 0: #if position is on starting room
 						var nextCell = solutionPath[1]
-						if nextCell[1] > solutionPath[index][1]:
-							pass #INSERT ROOM FROM StartingRooms_R (right room)
-						elif nextCell[1] < solutionPath[index][1]:
-							pass #INSERT ROOM FROM StartingRooms_L (left room)
-						elif nextCell[0] > solutionPath[index][0]:
-							pass #INSERT ROOM FROM StartingRooms_B (bottom room)
+						if nextCell[1] > solutionPath[index][1]: #next cell is to right of starting room
+							#pass #INSERT ROOM FROM StartingRooms_R (right room)
+							applyCellRandom("Starting_Rooms/R",i,j)
+
+						elif nextCell[1] < solutionPath[index][1]: #next cell is to left of starting room
+							#pass #INSERT ROOM FROM StartingRooms_L (left room)
+							applyCellRandom("Starting_Rooms/L",i,j)
 							
-					elif index == solutionPath.size: #if position is on final room
+						else:  #if nextCell[0] > solutionPath[index][0]: next cell has to be below
+							#pass #INSERT ROOM FROM StartingRooms_B (bottom room)
+							applyCellRandom("Starting_Rooms/B",i,j)
+							
+					elif index == solutionPath.size()-1: #if position is on final room
 						pass
 						var previousCell = solutionPath[-2]
 						if previousCell[0] > solutionPath[index][0]:
@@ -103,31 +109,37 @@ func apply_level_cells() -> void:
 						var doorType = ["",""]
 						#PREVIOUS CELL
 						if previousCell[0] < solutionPath[index][0]:
-							doorType[0] == "L"
+							doorType[0] = "L"
 						elif previousCell[0] > solutionPath[index][0]:
-							doorType[0] == "R"
+							doorType[0] = "R"
 						elif previousCell[1] < solutionPath[index][1]:
-							doorType[0] == "T"
+							doorType[0] = "T"
 						#NEXT CELL
 						if nextCell[0] < solutionPath[index][0]:
-							doorType[0] == "L"
+							doorType[1] = "L"
 						elif previousCell[0] > solutionPath[index][0]:
-							nextCell[0] == "R"
+							doorType[1] = "R"
 						elif nextCell[1] > solutionPath[index][1]:
-							doorType[0] == "B"
+							doorType[1] = "B"
 							
 						if doorType.has("B") and doorType.has("L"):
-							pass #INSERT ROOM from BL (bottom left)
+							print("BL")
+							applyCellRandom("BL",i,j)
 						elif doorType.has("L") and doorType.has("R"):
-							pass #INSERT ROOM from LR (left right)
+							print("LR")
+							applyCellRandom("LR",i,j)
 						elif doorType.has("L") and doorType.has("T"):
-							pass #INSERT ROOM from LT (left top)
+							print("LT")
+							applyCellRandom("LT",i,j)
 						elif doorType.has("R") and doorType.has("B"):
-							pass #INSERT ROOM from RB (right bottom)
+							print("RB")
+							applyCellRandom("RB",i,j)
 						elif doorType.has("T") and doorType.has("B"):
-							pass #INSERT ROOM from TB (top bottom)
+							print("TB")
+							applyCellRandom("TB",i,j)
 						elif doorType.has("T") and doorType.has("R"):
-							pass #INSERT ROOM from TR (top right)
+							print("TR")
+							applyCellRandom("TR",i,j)
 						
 					
 			else:
@@ -142,3 +154,17 @@ func generate_grid() -> void:
 		for j in ySize:
 			levelGrid[i].append(j)
 	print(levelGrid)
+	
+func applyCellRandom(cellType,x,y):
+	print("applyCellRandom CALLED " + cellType + " " + str(x) + str(y))
+	var files = ResourceLoader.list_directory("res://Scenes/Level_Cells/"+str(cellType))
+	
+	var randomCellPath = "res://Scenes/Level_Cells/"+cellType + "/" + files[rng.randi_range(0,files.size()-1)]
+	print(randomCellPath)
+	levelGrid[x][y] = load(randomCellPath)
+	levelGrid[x][y] = levelGrid[x][y].instantiate()
+	levelGrid[x][y].position = Vector2(cellSpace*x,cellSpace*y)
+	add_child(levelGrid[x][y])
+	levelGrid[x][y].reparent(levelNode)
+	
+	

@@ -1,13 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://j0qs0g4bxujs"]
+[gd_scene load_steps=21 format=3 uid="uid://j0qs0g4bxujs"]
 
 [ext_resource type="Script" uid="uid://dgaeglu1nfx7x" path="res://Scripts/master_level.gd" id="1_cwc2c"]
+[ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_ash0a"]
+[ext_resource type="PackedScene" uid="uid://dpjher1qwwqp2" path="res://Scenes/Level_Cells/BL/demo_bl.tscn" id="2_w7af8"]
+[ext_resource type="PackedScene" uid="uid://bfl2evfaat60c" path="res://Scenes/Level_Cells/TB/demo_tb.tscn" id="3_2cmae"]
 [ext_resource type="Texture2D" uid="uid://d0m4dm8ufrnfp" path="res://Assets/Sprites/Battery Hud Under.png" id="3_10gec"]
 [ext_resource type="Texture2D" uid="uid://kyqtypgvt8r7" path="res://Assets/Sprites/Battery Hud Over.png" id="4_76pe6"]
 [ext_resource type="Texture2D" uid="uid://vh6t7e8iplgc" path="res://Assets/Sprites/Battery Hud Progress.png" id="5_0ivku"]
 [ext_resource type="Script" uid="uid://bgaww1xfs0vrt" path="res://Scripts/charge_bar.gd" id="6_w7af8"]
 [ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="7_2cmae"]
 [ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
-[ext_resource type="Script" uid="uid://bee0bm8xtvsbe" path="res://Scenes/camera_2d.gd" id="9_0ivku"]
 [ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]
@@ -79,8 +81,18 @@ script = ExtResource("1_cwc2c")
 
 [node name="Level" type="Node2D" parent="."]
 
+[node name="StartingRoomL" parent="Level" instance=ExtResource("2_w7af8")]
+
+[node name="StartingRoomL2" parent="Level" instance=ExtResource("3_2cmae")]
+position = Vector2(0, 512)
+
+[node name="Homunculus" parent="." instance=ExtResource("2_ash0a")]
+position = Vector2(-16, -48)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Homunculus"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
 offset_left = 27.0
@@ -118,5 +130,4 @@ frame_progress = 0.912067
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-16, -48)
-zoom = Vector2(0.25, 0.25)
-script = ExtResource("9_0ivku")
+zoom = Vector2(2, 2)
