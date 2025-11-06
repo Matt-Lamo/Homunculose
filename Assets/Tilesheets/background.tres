@@ -20,6 +20,9 @@ texture = ExtResource("1_m0yuf")
 9:0/size_in_atlas = Vector2i(2, 2)
 9:0/0 = 0
 9:0/0/texture_origin = Vector2i(-8, 8)
+11:0/size_in_atlas = Vector2i(2, 2)
+11:0/0 = 0
+11:0/0/texture_origin = Vector2i(-8, 8)
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_5mrt3")
