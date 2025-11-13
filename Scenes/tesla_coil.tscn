@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu2cxt3mf6cvs"]
+
+[ext_resource type="Texture2D" uid="uid://bu7as1d63uea" path="res://Assets/Sprites/tesla coil.png" id="1_uxoa8"]
+[ext_resource type="Script" uid="uid://bme0bdwlt0cpa" path="res://Scripts/tesla_coil.gd" id="1_w5un6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5un6"]
+atlas = ExtResource("1_uxoa8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k8srw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5un6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="TeslaCoil" type="Node2D"]
+position = Vector2(104, 72)
+script = ExtResource("1_w5un6")
+length = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k8srw")
+animation = &"Idle"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 10)
+width = 1.0
+default_color = Color(0.117647, 1, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

@@ -16,6 +16,7 @@ func _ready() -> void:
 	generate_grid()
 	generate_solution_path()
 	apply_level_cells()
+	levelGenerated = true
 
 func _process(delta: float) -> void:
 	if !levelGenerated:

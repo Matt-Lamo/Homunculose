@@ -54,7 +54,6 @@ script = ExtResource("5_ap3ea")
 
 [node name="Saw" parent="SawPath2d/SawPathFollow2d" instance=ExtResource("5_lsb8r")]
 position = Vector2(0, -8)
-direction = "bottom"
 
 [node name="End_Door" parent="." instance=ExtResource("5_koko0")]
 position = Vector2(1720, -152)

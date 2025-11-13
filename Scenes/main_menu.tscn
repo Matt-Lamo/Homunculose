@@ -47,7 +47,7 @@ rotation = 1.5708
 rotates = false
 script = ExtResource("4_n45e2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+[node name="Title" type="Sprite2D" parent="Path2D/PathFollow2D"]
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_ce3w2")
