@@ -9,6 +9,7 @@ const xSize = 5
 const ySize = 5
 var rng = RandomNumberGenerator.new()
 @onready var levelNode = $Level
+@onready var player = $Homunculus
 
 func _ready() -> void:
 	randomize()
@@ -16,6 +17,7 @@ func _ready() -> void:
 	generate_grid()
 	generate_solution_path()
 	apply_level_cells()
+	
 	levelGenerated = true
 
 func _process(delta: float) -> void:
