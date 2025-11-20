@@ -1,6 +1,6 @@
 extends Area2D
 @export var direction = ""
-
+signal playerContact()
 
 func _process(delta: float) -> void:
 	match direction:
@@ -12,3 +12,9 @@ func _process(delta: float) -> void:
 			rotation_degrees = 90
 		"right":
 			rotation_degrees = 270
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == "Homunculus":
+		playerContact.emit()

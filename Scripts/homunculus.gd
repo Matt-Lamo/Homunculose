@@ -21,6 +21,7 @@ var previousState: States = States.IDLE
 func _ready() -> void:
 	Global.charge = Global.maxCharge
 	wallJumpCooldown.start()
+	
 
 
 func check_charge() -> void:
@@ -96,7 +97,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "Hazards":
+	if body.name == "ForegroundHazards":
 		print("HAZARD HIT.")
 		Global.charge -= hazardDamage
 
@@ -116,5 +117,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animatedSprite2d.play("falling")
 
 
-func _on_saw_body_entered(body: Node2D) -> void:
-	Global.charge -= sawDamage
+#func _on_saw_body_entered(body: Node2D) -> void:
+	#Global.charge -= sawDamage
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.name =="Saw":
+		Global.charge -= sawDamage

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://kfhac5af4nhu"]
+[gd_scene load_steps=8 format=4 uid="uid://kfhac5af4nhu"]
 
+[ext_resource type="Script" uid="uid://cs1qjfhic4sj2" path="res://Scripts/starting_room_r_1.gd" id="1_5l3b2"]
 [ext_resource type="TileSet" uid="uid://dt1iq4ic0h6w7" path="res://Assets/Tilesheets/background.tres" id="1_akxgv"]
 [ext_resource type="TileSet" uid="uid://cwauce7e87aa8" path="res://Assets/Tilesheets/level.tres" id="2_6f3lw"]
 [ext_resource type="Script" uid="uid://c8pr8vxfosqa7" path="res://Scripts/saw_path_follow_2d.gd" id="3_5l3b2"]
@@ -13,6 +14,7 @@ _data = {
 point_count = 3
 
 [node name="StartingRoomL" type="Node2D"]
+script = ExtResource("1_5l3b2")
 metadata/startingPos = Vector2(-200, -240)
 
 [node name="Background" type="TileMapLayer" parent="."]

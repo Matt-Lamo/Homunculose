@@ -8,4 +8,4 @@ var collider
 func _process(delta: float) -> void:
 	if is_colliding():
 		collider = get_collider().name
-		print(collider)
+		#print(collider)

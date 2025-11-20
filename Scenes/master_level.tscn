@@ -83,7 +83,6 @@ script = ExtResource("1_cwc2c")
 [node name="Homunculus" parent="." instance=ExtResource("2_0ivku")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
 offset_left = 27.0
@@ -106,6 +105,7 @@ position = Vector2(-2, 9)
 texture = ExtResource("8_cks5g")
 
 [node name="LoadingScreen" type="Node2D" parent="HUD"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="HUD/LoadingScreen"]
 offset_right = 1152.0

@@ -21,7 +21,7 @@ func _ready() -> void:
 	levelGenerated = true
 
 func _process(delta: float) -> void:
-	if !levelGenerated:
+	if levelGenerated:
 		loadingScreen.visible = false
 	else:
 		loadingScreen.visible = true
@@ -142,9 +142,13 @@ func applyCellRandom(cellType,x,y):
 	var randomCellPath = "res://Scenes/Level_Cells/"+cellType + files[rng.randi_range(0,files.size()-1)]
 	print(randomCellPath)
 	levelGrid[x][y] = load(randomCellPath)
+
 	levelGrid[x][y] = levelGrid[x][y].instantiate()
 	levelGrid[x][y].position = Vector2(cellSpace*x,cellSpace*y)
 	add_child(levelGrid[x][y])
+	if (cellType == "Starting_Rooms/R/" or cellType == "Starting_Rooms/L/" or cellType == "Starting_Rooms/B/"):
+		print("CELLTYPE CALLED")
+		player.position = Vector2((cellSpace*x)+levelGrid[x][y].startingPos[0],(cellSpace*y)+levelGrid[x][y].startingPos[1])
 	levelGrid[x][y].reparent(levelNode)
 	
 	
