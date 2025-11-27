@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b0rqnuvjqwckv" path="res://Assets/Sprites/facingaway.png" id="4_yu75g"]
 [ext_resource type="Texture2D" uid="uid://cs6sfqwk55hh2" path="res://Assets/Sprites/wall.png" id="5_ai20m"]
 [ext_resource type="Texture2D" uid="uid://dgdrittws0x7f" path="res://Assets/Sprites/Death Animation 1.png" id="5_k04rr"]
-[ext_resource type="Script" uid="uid://bw20dcio4h2kn" path="res://Scenes/ray_cast_left.gd" id="8_ek4i8"]
-[ext_resource type="Script" uid="uid://dfavvbvu81hrw" path="res://Scenes/ray_cast_right.gd" id="9_acfkb"]
+[ext_resource type="Script" uid="uid://bw20dcio4h2kn" path="res://Scripts/ray_cast_left.gd" id="8_ek4i8"]
+[ext_resource type="Script" uid="uid://dfavvbvu81hrw" path="res://Scripts/ray_cast_right.gd" id="9_acfkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlefc"]
 atlas = ExtResource("5_k04rr")
@@ -302,7 +302,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s4lhm")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_pop",
 "speed": 10.0
 }, {
@@ -450,6 +450,7 @@ animation = &"death_charge"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_y42ka")
 
@@ -461,6 +462,7 @@ script = ExtResource("3_ygv5h")
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
 position = Vector2(1, 4.5)
 shape = SubResource("RectangleShape2D_ygv5h")
 debug_color = Color(0.960781, 0.0997243, 0.435305, 0.42)
