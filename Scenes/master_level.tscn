@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bgaww1xfs0vrt" path="res://Scripts/charge_bar.gd" id="6_w7af8"]
 [ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="7_2cmae"]
 [ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
-[ext_resource type="Script" uid="uid://bee0bm8xtvsbe" path="res://Scripts/camera_2d.gd" id="9_0ivku"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="9_0ivku"]
 [ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]

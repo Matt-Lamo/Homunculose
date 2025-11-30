@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=4 uid="uid://dnvsgb5oio7jb"]
 
 [ext_resource type="TileSet" uid="uid://dt1iq4ic0h6w7" path="res://Assets/Tilesheets/background.tres" id="1_1ehe0"]
-[ext_resource type="Script" uid="uid://b030mtk2np0tu" path="res://Scripts/main_menu.gd" id="1_16hvj"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_16hvj"]
 [ext_resource type="TileSet" uid="uid://cwauce7e87aa8" path="res://Assets/Tilesheets/level.tres" id="2_ce3w2"]
 [ext_resource type="TileSet" uid="uid://cjhvnp17o6fvm" path="res://Assets/Tilesheets/foreground_hazards.tres" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://v6yf1f5hvx57" path="res://Assets/Sprites/Homunculose Title.png" id="4_ce3w2"]
-[ext_resource type="Script" uid="uid://neyj4smba17p" path="res://Scripts/path_follow_2d.gd" id="4_n45e2"]
+[ext_resource type="Script" path="res://Scripts/path_follow_2d.gd" id="4_n45e2"]
 [ext_resource type="FontFile" uid="uid://27oe45mb84xg" path="res://Assets/Fonts/ThaleahFat.ttf" id="6_opfnp"]
 [ext_resource type="Texture2D" uid="uid://cj46n5ng8iu7c" path="res://Assets/Sprites/New Run.png" id="7_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://d102e4fu5ryco" path="res://Assets/Sprites/Options.png" id="8_trj04"]
