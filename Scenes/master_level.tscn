@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://j0qs0g4bxujs"]
+[gd_scene load_steps=19 format=3 uid="uid://j0qs0g4bxujs"]
 
 [ext_resource type="Script" uid="uid://dgaeglu1nfx7x" path="res://Scripts/master_level.gd" id="1_cwc2c"]
 [ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_0ivku"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://bgaww1xfs0vrt" path="res://Scripts/charge_bar.gd" id="6_w7af8"]
 [ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="7_2cmae"]
 [ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
-[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="9_0ivku"]
 [ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]
@@ -82,9 +81,16 @@ script = ExtResource("1_cwc2c")
 
 [node name="Homunculus" parent="." instance=ExtResource("2_0ivku")]
 
+[node name="Camera2D" type="Camera2D" parent="Homunculus"]
+position = Vector2(-16, -48)
+offset = Vector2(0, 32)
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+[node name="ChargeBar" type="TextureProgressBar" parent="HUD"]
 offset_left = 27.0
 offset_top = 23.0
 offset_right = 155.0
@@ -96,11 +102,11 @@ texture_over = ExtResource("4_76pe6")
 texture_progress = ExtResource("5_0ivku")
 script = ExtResource("6_w7af8")
 
-[node name="BatteryHudHead" type="Sprite2D" parent="HUD/TextureProgressBar"]
+[node name="BatteryHudHead" type="Sprite2D" parent="HUD/ChargeBar"]
 position = Vector2(137, 9)
 texture = ExtResource("7_2cmae")
 
-[node name="BatteryHudTail" type="Sprite2D" parent="HUD/TextureProgressBar"]
+[node name="BatteryHudTail" type="Sprite2D" parent="HUD/ChargeBar"]
 position = Vector2(-2, 9)
 texture = ExtResource("8_cks5g")
 
@@ -118,8 +124,3 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_fu21j")
 autoplay = "default"
 frame_progress = 0.912067
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-16, -48)
-zoom = Vector2(0.25, 0.25)
-script = ExtResource("9_0ivku")

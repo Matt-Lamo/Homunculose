@@ -9,18 +9,20 @@ const hazardDamage = 15
 const wallGravity = 600.0
 const defaultGravity = 1100.0
 var deathBool = true #flips when player dies to break physics_process loop
-enum States {IDLE, WALKING, FALLING, WALL_SLIDING, JUMPING}
+enum States {IDLE, WALKING, FALLING, WALL_SLIDING, JUMPING, DEAD}
 var state: States = States.IDLE
 var previousState: States = States.IDLE
 @onready var animatedSprite2d = $AnimatedSprite2D
 @onready var rayCastLeft = $RayCastLeft
 @onready var rayCastRight = $RayCastRight
 @onready var wallJumpCooldown = $WallJumpCooldown
-
+var lastDamage = ""
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	Global.charge = Global.maxCharge
 	wallJumpCooldown.start()
+	rng.randomize()
 	
 
 
@@ -28,8 +30,8 @@ func check_charge() -> void:
 	if Global.charge <= 0:
 		if deathBool: #should trigger first time player runs out of charge
 			deathBool = false
-			#animatedSprite2d.play("dead") NEED TO DRAW DEATH ANIMATION
-			set_physics_process(false)
+			
+			
 			
 		
 
@@ -46,7 +48,6 @@ func set_state(direction: float) -> void:
 		state = States.JUMPING
 
 func _physics_process(delta: float) -> void:
-	ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)
 	#print(wallJumpCooldown.time_left)
 	check_charge() #checks player charge for game over
 
@@ -54,11 +55,16 @@ func _physics_process(delta: float) -> void:
 	set_state(direction)
 	velocity += get_gravity() * delta
 	match state:
+		States.DEAD:
+			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
+			on_death()
 		States.IDLE:
+			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if wallJumpCooldown.is_stopped():
 				velocity.x = direction * SPEED
 			animatedSprite2d.play("idle")
 		States.WALKING:
+			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if(wallJumpCooldown.is_stopped()):
 				if direction:
 					velocity.x = direction * SPEED
@@ -72,6 +78,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction * SPEED
 			animatedSprite2d.play("wall_sliding")
 		States.JUMPING:
+			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if previousState == States.WALL_SLIDING:
 				var wall_jump_velocity = WALL_JUMP_VELOCITY
 				print("Previous State WALL SLIDING")
@@ -96,6 +103,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func on_death() -> void:
+	var anim_chance = rng.randi_range(0,11)
+	if anim_chance == 0:
+		animatedSprite2d.play("death_peter")
+	elif anim_chance >0 and anim_chance <=5:
+		animatedSprite2d.play("death_charge")
+	elif anim_chance >5 and anim_chance <= 10:
+		animatedSprite2d.play("death_pop")
+	set_physics_process(false)
+		
+	
+	
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "ForegroundHazards":
 		print("HAZARD HIT.")
@@ -124,3 +143,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name =="Saw":
 		Global.charge -= sawDamage
+		lastDamage = "Saw"

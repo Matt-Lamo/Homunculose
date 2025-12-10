@@ -509,10 +509,12 @@ script = ExtResource("1_ocvrq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dedpo")
-animation = &"death_peter"
+animation = &"walking"
 autoplay = "idle"
+frame_progress = 0.804509
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_y42ka")
 
@@ -521,6 +523,7 @@ autostart = true
 script = ExtResource("3_ygv5h")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -529,12 +532,14 @@ shape = SubResource("RectangleShape2D_ygv5h")
 debug_color = Color(0.960781, 0.0997243, 0.435305, 0.42)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(1, -8)
 target_position = Vector2(-12, 0)
 collision_mask = 2
 script = ExtResource("8_ek4i8")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(1, -8)
 target_position = Vector2(12, 0)
 collision_mask = 2
