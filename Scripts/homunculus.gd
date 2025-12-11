@@ -30,6 +30,7 @@ func check_charge() -> void:
 	if Global.charge <= 0:
 		if deathBool: #should trigger first time player runs out of charge
 			deathBool = false
+			on_death()
 			
 			
 			
@@ -104,13 +105,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func on_death() -> void:
+	set_physics_process(false)
 	var anim_chance = rng.randi_range(0,11)
+	
 	if anim_chance == 0:
-		animatedSprite2d.play("death_peter")
+		animatedSprite2d.animation="death_peter"
 	elif anim_chance >0 and anim_chance <=5:
-		animatedSprite2d.play("death_charge")
+		animatedSprite2d.animation= "death_charge"
 	elif anim_chance >5 and anim_chance <= 10:
-		animatedSprite2d.play("death_pop")
+		animatedSprite2d.animation="death_pop"
 	set_physics_process(false)
 		
 	

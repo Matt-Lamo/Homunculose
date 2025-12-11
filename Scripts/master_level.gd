@@ -81,7 +81,7 @@ func apply_level_cells() -> void:
 				levelGrid[i][j]=levelGrid[i][j].instantiate()
 				add_child(levelGrid[i][j])
 				levelGrid[i][j].position = Vector2((i*cellSpace),(j*cellSpace))
-	for i in range(0,solutionPath.size()-1):
+	for i in range(0,solutionPath.size()-1): #-1
 		var currentCell = solutionPath[i]
 		if i == 0: #starting room
 			var nextCell = solutionPath[1]
@@ -92,8 +92,14 @@ func apply_level_cells() -> void:
 			else: #next room has to be below
 				applyCellRandom("Starting_Rooms/B/",currentCell[0],currentCell[1])
 		elif i == solutionPath.size()-1: #end room
-			pass
-		else: #all other rooms
+			var previousCell = solutionPath[i-1]
+			if previousCell[0] > solutionPath[i][0]: #previous room is to the right
+				applyCellRandom("Ending_Rooms/R/",currentCell[0],currentCell[1])
+			if previousCell[0] < solutionPath[i][0]: #previous room is to the left
+				applyCellRandom("Ending_Rooms/L/",currentCell[0],currentCell[1])
+			if previousCell[1] < solutionPath[i][1]: #previous room is to the top
+				applyCellRandom("Ending_Rooms/T/",currentCell[0],currentCell[1])
+		else: #all other rooms 
 			var nextCell = solutionPath[i+1]
 			var previousCell = solutionPath[i-1]
 			var cellType = ""

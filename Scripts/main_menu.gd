@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_new_run_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/master_level.tscn")
 
 
 func _on_options_pressed() -> void:
