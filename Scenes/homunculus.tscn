@@ -509,9 +509,10 @@ script = ExtResource("1_ocvrq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dedpo")
-animation = &"walking"
+animation = &"death_peter"
 autoplay = "idle"
-frame_progress = 0.804509
+frame = 15
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
