@@ -23,22 +23,22 @@ func _ready() -> void:
 	Global.charge = Global.maxCharge
 	wallJumpCooldown.start()
 	rng.randomize()
-	
 
 
-func check_charge() -> void:
-	if Global.charge <= 0:
-		if deathBool: #should trigger first time player runs out of charge
-			deathBool = false
-			on_death()
-			
-			
-			
-		
+
+#func check_charge() -> void:
+#	if Global.charge <= 0:
+#		if deathBool: #should trigger first time player runs out of charge
+#			deathBool = false
+#			on_death()
+
 
 func set_state(direction: float) -> void:
 	previousState = state
-	if is_on_wall_only() and (rayCastLeft.is_colliding() or rayCastRight.is_colliding()):
+	
+	if Global.charge <= 0:
+		state = States.DEAD
+	elif is_on_wall_only() and (rayCastLeft.is_colliding() or rayCastRight.is_colliding()):
 		state = States.WALL_SLIDING
 	elif direction !=0:   
 		state = States.WALKING
@@ -50,9 +50,10 @@ func set_state(direction: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(wallJumpCooldown.time_left)
-	check_charge() #checks player charge for game over
+	#check_charge() #checks player charge for game over
 
 	var direction := Input.get_axis("left", "right")
+	
 	set_state(direction)
 	velocity += get_gravity() * delta
 	match state:
@@ -107,7 +108,6 @@ func _physics_process(delta: float) -> void:
 func on_death() -> void:
 	set_physics_process(false)
 	var anim_chance = rng.randi_range(0,11)
-	
 	if anim_chance == 0:
 		animatedSprite2d.animation="death_peter"
 	elif anim_chance >0 and anim_chance <=5:
