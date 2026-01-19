@@ -12,12 +12,16 @@ var deathBool = true #flips when player dies to break physics_process loop
 enum States {IDLE, WALKING, FALLING, WALL_SLIDING, JUMPING, DEAD}
 var state: States = States.IDLE
 var previousState: States = States.IDLE
+var lastDamage = ""
+
+var rng = RandomNumberGenerator.new()
+
 @onready var animatedSprite2d = $AnimatedSprite2D
 @onready var rayCastLeft = $RayCastLeft
 @onready var rayCastRight = $RayCastRight
 @onready var wallJumpCooldown = $WallJumpCooldown
-var lastDamage = ""
-var rng = RandomNumberGenerator.new()
+
+signal damage_taken
 
 func _ready() -> void:
 	Global.charge = Global.maxCharge
@@ -122,6 +126,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "ForegroundHazards":
 		print("HAZARD HIT.")
 		Global.charge -= hazardDamage
+		
+		damage_taken.emit() #triggers camera shake
 
 
 func _on_end_door_door_animation() -> void:
@@ -139,11 +145,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animatedSprite2d.play("falling")
 
 
-#func _on_saw_body_entered(body: Node2D) -> void:
-	#Global.charge -= sawDamage
-
-
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name =="Saw":
 		Global.charge -= sawDamage
 		lastDamage = "Saw"
+		
+		damage_taken.emit() #triggers camera shake
