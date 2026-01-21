@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://j0qs0g4bxujs"]
+[gd_scene load_steps=38 format=4 uid="uid://j0qs0g4bxujs"]
 
 [ext_resource type="Script" uid="uid://dgaeglu1nfx7x" path="res://Scripts/master_level.gd" id="1_cwc2c"]
 [ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_0ivku"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cyp3e0q8glp7p" path="res://Assets/Sprites/Battery Hud Head.png" id="7_2cmae"]
 [ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
 [ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
+[ext_resource type="Texture2D" uid="uid://dys4d8nv6soxc" path="res://Assets/Sprites/Transition animation.png" id="12_2cmae"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]
 atlas = ExtResource("9_76pe6")
@@ -74,6 +75,119 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu21j"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(0, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txq03"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(576, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovfnw"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(1152, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m0cx"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(1728, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk2ly"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(2304, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj65i"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(2880, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m58jw"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(3456, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usbgy"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(4032, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbpvt"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(4608, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vncg3"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(5184, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8xt1"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(5760, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgeq2"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(6336, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c52d"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(6912, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvhi0"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(7488, 0, 576, 336)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06t51"]
+atlas = ExtResource("12_2cmae")
+region = Rect2(8064, 0, 576, 336)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwejc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu21j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txq03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovfnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m0cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk2ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj65i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m58jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usbgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbpvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vncg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8xt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgeq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c52d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvhi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06t51")
+}],
+"loop": false,
+"name": &"in",
+"speed": 48.0
 }]
 
 [node name="MasterLevel" type="Node2D"]
@@ -140,5 +254,14 @@ modulate = Color(1, 1, 1, 0.596078)
 offset_right = 1154.0
 offset_bottom = 650.0
 color = Color(0.0588235, 0.105882, 0.301961, 1)
+
+[node name="Transition" type="AnimatedSprite2D" parent="HUD"]
+visible = false
+position = Vector2(562, 313)
+scale = Vector2(2.051, 2)
+sprite_frames = SubResource("SpriteFrames_nwejc")
+animation = &"in"
+frame = 14
+frame_progress = 1.0
 
 [connection signal="damage_taken" from="Homunculus" to="Homunculus/Camera2D" method="_on_homunculus_damage_taken"]

@@ -6,8 +6,8 @@ const WALL_JUMP_VELOCITY = Vector2(200, -400)
 const wall_jump_push_force = 300.0
 const sawDamage = 15
 const hazardDamage = 15
-const wallGravity = 600.0
-const defaultGravity = 1100.0
+const wallGravity = 180.0
+
 var deathBool = true #flips when player dies to break physics_process loop
 enum States {IDLE, WALKING, FALLING, WALL_SLIDING, JUMPING, DEAD}
 var state: States = States.IDLE
@@ -62,15 +62,12 @@ func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta
 	match state:
 		States.DEAD:
-			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			on_death()
 		States.IDLE:
-			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if wallJumpCooldown.is_stopped():
 				velocity.x = direction * SPEED
 			animatedSprite2d.play("idle")
 		States.WALKING:
-			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if(wallJumpCooldown.is_stopped()):
 				if direction:
 					velocity.x = direction * SPEED
@@ -79,12 +76,11 @@ func _physics_process(delta: float) -> void:
 			animatedSprite2d.flip_h = (direction ==-1)  #flips animation WHEN WALKING STATE
 			animatedSprite2d.play("walking")
 		States.WALL_SLIDING:
-			ProjectSettings.set_setting("physics/2d/default_gravity", wallGravity)
 			if direction != 0:
 				velocity.x = direction * SPEED
+			velocity.y = wallGravity
 			animatedSprite2d.play("wall_sliding")
 		States.JUMPING:
-			ProjectSettings.set_setting("physics/2d/default_gravity", defaultGravity)#ADDED IN POST
 			if previousState == States.WALL_SLIDING:
 				var wall_jump_velocity = WALL_JUMP_VELOCITY
 				print("Previous State WALL SLIDING")
