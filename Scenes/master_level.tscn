@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://j0qs0g4bxujs"]
+[gd_scene load_steps=41 format=4 uid="uid://j0qs0g4bxujs"]
 
 [ext_resource type="Script" uid="uid://dgaeglu1nfx7x" path="res://Scripts/master_level.gd" id="1_cwc2c"]
 [ext_resource type="PackedScene" uid="uid://dkxk5pare3xqx" path="res://Scenes/homunculus.tscn" id="2_0ivku"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c1ct5g1cfyqfh" path="res://Assets/Sprites/Battery Hud Tail.png" id="8_cks5g"]
 [ext_resource type="Texture2D" uid="uid://bhuy27y5oxi34" path="res://Assets/Sprites/loading animation.png" id="9_76pe6"]
 [ext_resource type="Texture2D" uid="uid://dys4d8nv6soxc" path="res://Assets/Sprites/Transition animation.png" id="12_2cmae"]
+[ext_resource type="Shader" uid="uid://bojo3n83e0spd" path="res://Scripts/Shaders/master_level.gdshader" id="12_gmdjs"]
+[ext_resource type="Texture2D" uid="uid://v8v5mdn31cm1" path="res://Assets/Sprites/Eye texture.png" id="13_eviyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ivku"]
 atlas = ExtResource("9_76pe6")
@@ -76,6 +78,10 @@ animations = [{
 "name": &"default",
 "speed": 12.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yv1fa"]
+shader = ExtResource("12_gmdjs")
+shader_parameter/speed = 0.1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fu21j"]
 atlas = ExtResource("12_2cmae")
@@ -247,13 +253,18 @@ autoplay = "default"
 frame_progress = 0.912067
 
 [node name="GameOverScreen" type="Node2D" parent="HUD"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="HUD/GameOverScreen"]
-modulate = Color(1, 1, 1, 0.596078)
 offset_right = 1154.0
 offset_bottom = 650.0
 color = Color(0.0588235, 0.105882, 0.301961, 1)
+
+[node name="Pattern" type="TextureRect" parent="HUD/GameOverScreen"]
+material = SubResource("ShaderMaterial_yv1fa")
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("13_eviyl")
+stretch_mode = 1
 
 [node name="Transition" type="AnimatedSprite2D" parent="HUD"]
 visible = false
@@ -265,3 +276,4 @@ frame = 14
 frame_progress = 1.0
 
 [connection signal="damage_taken" from="Homunculus" to="Homunculus/Camera2D" method="_on_homunculus_damage_taken"]
+[connection signal="player_dead" from="Homunculus" to="." method="_on_homunculus_player_dead"]

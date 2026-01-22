@@ -157,4 +157,7 @@ func applyCellRandom(cellType,x,y):
 		player.position = Vector2((cellSpace*x)+levelGrid[x][y].startingPos[0],(cellSpace*y)+levelGrid[x][y].startingPos[1])
 	levelGrid[x][y].reparent(levelNode)
 	
-	
+
+
+func _on_homunculus_player_dead() -> void:
+	pass # Replace with function body.

@@ -22,19 +22,12 @@ var rng = RandomNumberGenerator.new()
 @onready var wallJumpCooldown = $WallJumpCooldown
 
 signal damage_taken
+signal player_dead
 
 func _ready() -> void:
 	Global.charge = Global.maxCharge
 	wallJumpCooldown.start()
 	rng.randomize()
-
-
-
-#func check_charge() -> void:
-#	if Global.charge <= 0:
-#		if deathBool: #should trigger first time player runs out of charge
-#			deathBool = false
-#			on_death()
 
 
 func set_state(direction: float) -> void:
@@ -114,6 +107,7 @@ func on_death() -> void:
 		animatedSprite2d.animation= "death_charge"
 	elif anim_chance >5 and anim_chance <= 10:
 		animatedSprite2d.animation="death_pop"
+	player_dead.emit()
 	set_physics_process(false)
 		
 	
