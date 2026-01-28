@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bck0vb6qd3h77"]
+
+[ext_resource type="Script" uid="uid://b1jkem0trbo7d" path="res://Scripts/modifier_pickup.gd" id="1_pcchj"]
+[ext_resource type="Texture2D" uid="uid://co0kqjixo75wa" path="res://Assets/Sprites/Modifier Pedestal.png" id="2_fqejs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2drca"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
+[node name="ModifierPickup" type="Area2D"]
+script = ExtResource("1_pcchj")
+
+[node name="Pedestal" type="Sprite2D" parent="."]
+texture = ExtResource("2_fqejs")
+
+[node name="ModifierAnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2drca")
+animation = &"empty"
